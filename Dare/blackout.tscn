@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cijshadgh3ub8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t04i"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="blackout" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_0t04i")
+size = Vector3(10, 0.1, 10)

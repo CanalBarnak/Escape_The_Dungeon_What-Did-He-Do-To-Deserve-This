@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c50e3u3i365fv"]
+
+[ext_resource type="Texture2D" uid="uid://cpyd3pcnd24wl" path="res://Transition/floor_arrow_Nwest.png" id="1_vhbt0"]
+[ext_resource type="Texture2D" uid="uid://bnvradilmm7kl" path="res://Transition/Shadow_arrow_Seast.png" id="2_whcqy"]
+
+[node name="left_transition_arrow" type="Node3D"]
+
+[node name="arrow" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00111856, 0)
+offset = Vector2(-4, -3)
+flip_h = true
+modulate = Color(0.313726, 0.545098, 0.737255, 1)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_vhbt0")
+
+[node name="shadow" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0433596, -0.05, 0)
+offset = Vector2(-4, -3)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_whcqy")

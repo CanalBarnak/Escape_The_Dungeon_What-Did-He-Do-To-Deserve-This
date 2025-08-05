@@ -1,0 +1,785 @@
+[gd_scene load_steps=20 format=3 uid="uid://210bk020ephq"]
+
+[ext_resource type="Shader" uid="uid://8dw0cpjtaq23" path="res://shader/CRT.gdshader" id="1_3i1pe"]
+[ext_resource type="PackedScene" uid="uid://pwpfapl3l0bn" path="res://scene/tile.tscn" id="1_nwp2t"]
+[ext_resource type="PackedScene" uid="uid://djiu8wqtnk6h0" path="res://hero.tscn" id="1_peue8"]
+[ext_resource type="Script" uid="uid://cp1lnviyfl31j" path="res://spawn_loc_world.gd" id="1_x83hs"]
+[ext_resource type="PackedScene" uid="uid://b53w8mrfxpupr" path="res://scene/water.tscn" id="3_peue8"]
+[ext_resource type="PackedScene" uid="uid://btju04cmgn3bj" path="res://scene/Grass.tscn" id="4_nwp2t"]
+[ext_resource type="PackedScene" uid="uid://cojgc63l02oml" path="res://Transition/up_arrow.tscn" id="7_5wftq"]
+[ext_resource type="Script" uid="uid://dgexdfp0tmuyl" path="res://Levels/scripts/to_level_2.gd" id="7_d6m2i"]
+[ext_resource type="PackedScene" uid="uid://bavk3by0qunpv" path="res://Transition/arrow.tscn" id="7_jq8m5"]
+[ext_resource type="PackedScene" uid="uid://bd6bpwb58bsx4" path="res://scene/plank_tile.tscn" id="8_5wftq"]
+[ext_resource type="PackedScene" uid="uid://c50e3u3i365fv" path="res://Transition/left_arrow.tscn" id="9_6xmj5"]
+[ext_resource type="PackedScene" uid="uid://b20dfses3sqtk" path="res://scene/Invisible_bound.tscn" id="11_vxpn7"]
+[ext_resource type="Texture2D" uid="uid://bb4736btfka8v" path="res://Sprites/Compass.png" id="13_tn4qm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3i1pe"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_jq8m5"]
+sky_material = SubResource("ProceduralSkyMaterial_3i1pe")
+
+[sub_resource type="Environment" id="Environment_5wftq"]
+background_mode = 2
+sky = SubResource("Sky_jq8m5")
+tonemap_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jq8m5"]
+shader = ExtResource("1_3i1pe")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.062
+shader_parameter/scanlines_width = 0.157
+shader_parameter/grille_opacity = 0.071
+shader_parameter/resolution = Vector2(256, 224)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 2.209
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.192
+shader_parameter/noise_speed = 3.0
+shader_parameter/static_noise_intensity = 0.031
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.5
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.583
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i1pe"]
+albedo_color = Color(0.210944, 0.29118, 0.723782, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxpn7"]
+size = Vector3(0.675, 0.45, 0.45)
+
+[node name="monde" type="Node3D"]
+script = ExtResource("1_x83hs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5wftq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jq8m5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hero" parent="." instance=ExtResource("1_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09103, 0)
+metadata/_edit_lock_ = true
+
+[node name="spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00274825, 0.0940185, 0.220452)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612373, 0.612373, 0, 0, 0)
+shadow_enabled = true
+
+[node name="monde" type="Node3D" parent="."]
+
+[node name="tile_1" parent="monde" instance=ExtResource("1_nwp2t")]
+
+[node name="tile_2" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.225)
+
+[node name="tile_4" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, 0.225)
+
+[node name="tile_5" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, 0.225)
+
+[node name="tile_6" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, 0.225)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="monde/tile_6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1375, -0.45, -0.6125)
+size = Vector3(4.275, 0.1, 4.275)
+material = SubResource("StandardMaterial3D_3i1pe")
+metadata/_edit_lock_ = true
+
+[node name="tile_7" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0.225)
+
+[node name="tile_36" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.09, -0.45)
+
+[node name="tile_43" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0.09, -0.45)
+
+[node name="tile_44" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.09, -0.45)
+
+[node name="tile_45" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.18, -0.45)
+
+[node name="tile_46" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0.18, -0.45)
+
+[node name="tile_47" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.18, -0.45)
+
+[node name="tile_48" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0.09, -0.45)
+
+[node name="tile_49" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0.18, -0.45)
+
+[node name="tile_8" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0, 0.225)
+
+[node name="tile_3" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.225)
+
+[node name="tile_11" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.675)
+
+[node name="tile_12" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+
+[node name="tile_13" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+
+[node name="tile_14" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.35)
+
+[node name="tile_15" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.125)
+
+[node name="tile_16" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.575)
+
+[node name="water_2" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -0.225)
+
+[node name="water_6" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -0.225)
+
+[node name="water_7" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -0.225)
+
+[node name="water_8" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -0.225)
+
+[node name="water_9" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -0.225)
+
+[node name="water_10" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -0.225)
+
+[node name="water_11" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -0.225)
+
+[node name="water_115" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.09, -0.45)
+
+[node name="water_116" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.09, -0.675)
+
+[node name="water_120" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, -0.09, -0.675)
+
+[node name="water_121" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, -0.09, -0.9)
+
+[node name="water_123" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.09, -0.675)
+
+[node name="water_124" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.09, -0.9)
+
+[node name="water_122" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.025, -0.09, -1.125)
+
+[node name="water_117" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.09, -0.9)
+
+[node name="water_118" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.09, -1.125)
+
+[node name="water_119" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -0.09, -1.35)
+
+[node name="water_12" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -0.45)
+
+[node name="water_13" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -0.45)
+
+[node name="water_14" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -0.45)
+
+[node name="water_15" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -0.45)
+
+[node name="water_84" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -0.45)
+
+[node name="water_85" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -0.45)
+
+[node name="water_86" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -0.45)
+
+[node name="water_87" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -0.675)
+
+[node name="water_88" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -0.675)
+
+[node name="water_89" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -0.675)
+
+[node name="water_90" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -0.675)
+
+[node name="water_91" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -0.675)
+
+[node name="water_92" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -0.675)
+
+[node name="water_93" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -0.675)
+
+[node name="water_94" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -0.9)
+
+[node name="water_95" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -0.9)
+
+[node name="water_96" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -0.9)
+
+[node name="water_97" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -0.9)
+
+[node name="water_98" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -0.9)
+
+[node name="water_99" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -0.9)
+
+[node name="water_100" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -0.9)
+
+[node name="water_101" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -1.125)
+
+[node name="water_102" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -1.125)
+
+[node name="water_103" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -1.125)
+
+[node name="water_104" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -1.125)
+
+[node name="water_105" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -1.125)
+
+[node name="water_106" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -1.125)
+
+[node name="water_107" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -1.125)
+
+[node name="water_108" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -1.35)
+
+[node name="water_109" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -1.35)
+
+[node name="water_110" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -1.35)
+
+[node name="water_111" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -1.35)
+
+[node name="water_112" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -1.35)
+
+[node name="water_113" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -1.35)
+
+[node name="water_114" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -1.35)
+
+[node name="water_125" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -1.575)
+
+[node name="water_126" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -1.575)
+
+[node name="water_127" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -1.575)
+
+[node name="water_128" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -1.575)
+
+[node name="water_129" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -1.575)
+
+[node name="water_130" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -1.575)
+
+[node name="water_132" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, -1.8)
+
+[node name="water_133" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -1.8)
+
+[node name="water_134" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -1.8)
+
+[node name="water_135" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -1.8)
+
+[node name="water_136" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -1.8)
+
+[node name="water_138" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -2.025)
+
+[node name="water_139" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -2.025)
+
+[node name="water_140" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -2.025)
+
+[node name="water_142" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, -2.25)
+
+[node name="water_143" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, -2.25)
+
+[node name="water_144" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, -2.25)
+
+[node name="water_141" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, -2.025)
+
+[node name="water_137" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, -1.8)
+
+[node name="water_131" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, -0.09, -1.575)
+
+[node name="water_3" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 0)
+
+[node name="water_4" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 0.225)
+
+[node name="water_5" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 0.45)
+
+[node name="water_16" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 0.45)
+
+[node name="water_17" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 0.45)
+
+[node name="water_18" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 0.45)
+
+[node name="water_19" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.09, 0.45)
+
+[node name="water_20" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.09, 0.45)
+
+[node name="water_21" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, -0.09, 0.45)
+
+[node name="tile_9" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0, 0.225)
+
+[node name="water_22" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, -0.09, 0.45)
+
+[node name="water_24" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 0.675)
+
+[node name="water_25" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 0.675)
+
+[node name="water_26" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 0.675)
+
+[node name="water_27" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 0.675)
+
+[node name="water_28" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.09, 0.675)
+
+[node name="water_29" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.09, 0.675)
+
+[node name="water_30" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, -0.09, 0.675)
+
+[node name="water_32" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 0.9)
+
+[node name="water_33" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 0.9)
+
+[node name="water_34" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 0.9)
+
+[node name="water_35" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 0.9)
+
+[node name="water_36" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.09, 0.9)
+
+[node name="water_37" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.09, 0.9)
+
+[node name="water_39" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 1.125)
+
+[node name="water_40" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 1.125)
+
+[node name="water_41" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 1.125)
+
+[node name="water_42" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 1.125)
+
+[node name="water_43" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.09, 1.125)
+
+[node name="water_45" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 1.35)
+
+[node name="water_46" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 1.35)
+
+[node name="water_47" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 1.35)
+
+[node name="water_48" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 1.35)
+
+[node name="water_50" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, -0.09, 1.575)
+
+[node name="water_54" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 0)
+
+[node name="water_55" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 0.225)
+
+[node name="water_56" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 0.45)
+
+[node name="water_57" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 0.675)
+
+[node name="water_58" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 0.9)
+
+[node name="water_59" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 1.125)
+
+[node name="water_60" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 1.35)
+
+[node name="water_62" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 0)
+
+[node name="water_63" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 0.225)
+
+[node name="water_64" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 0.45)
+
+[node name="water_65" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 0.675)
+
+[node name="water_66" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 0.9)
+
+[node name="water_67" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 1.125)
+
+[node name="water_69" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 0)
+
+[node name="water_70" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 0.225)
+
+[node name="water_71" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 0.45)
+
+[node name="water_72" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 0.675)
+
+[node name="water_73" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 0.9)
+
+[node name="water_75" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, 0)
+
+[node name="water_76" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, 0.225)
+
+[node name="water_77" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, 0.45)
+
+[node name="water_78" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, 0.675)
+
+[node name="water_80" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, 0)
+
+[node name="water_81" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, 0.225)
+
+[node name="water_82" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, 0.45)
+
+[node name="water_83" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, -0.09, 0.675)
+
+[node name="water_79" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.09, 0.9)
+
+[node name="water_74" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.09, 1.125)
+
+[node name="water_68" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, -0.09, 1.35)
+
+[node name="water_61" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.09, 1.575)
+
+[node name="water_51" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09, 1.575)
+
+[node name="water_52" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.09, 1.575)
+
+[node name="water_53" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.09, 1.575)
+
+[node name="water_49" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, -0.09, 1.35)
+
+[node name="water_44" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.09, 1.125)
+
+[node name="water_38" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, -0.09, 0.9)
+
+[node name="water_31" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, -0.09, 0.675)
+
+[node name="tile_10" parent="monde" instance=ExtResource("1_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0, 0.225)
+
+[node name="water_23" parent="monde" instance=ExtResource("3_peue8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, -0.09, 0.45)
+
+[node name="tile_" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, 0)
+
+[node name="tile_17" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -0.225)
+
+[node name="tile_18" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, 0)
+
+[node name="tile_19" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, -0.225)
+
+[node name="tile_20" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, 0)
+
+[node name="tile_21" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, -0.225)
+
+[node name="tile_22" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
+
+[node name="tile_23" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -0.225)
+
+[node name="tile_24" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0, 0)
+
+[node name="tile_25" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0, -0.225)
+
+[node name="tile_26" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -0.45)
+
+[node name="tile_27" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, -0.45)
+
+[node name="tile_28" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, -0.45)
+
+[node name="tile_29" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -0.45)
+
+[node name="tile_30" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -0.675)
+
+[node name="tile_31" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, -0.675)
+
+[node name="tile_32" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, -0.675)
+
+[node name="tile_33" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -0.9)
+
+[node name="tile_34" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, -0.9)
+
+[node name="tile_35" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -1.125)
+
+[node name="tile_37" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, -0.9)
+
+[node name="tile_38" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -0.675)
+
+[node name="tile_39" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0, -0.45)
+
+[node name="tile_40" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0, 0)
+
+[node name="tile_41" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0, 0)
+
+[node name="tile_42" parent="monde" instance=ExtResource("4_nwp2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0, -0.225)
+
+[node name="cam_pivot" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="cam_pivot"]
+transform = Transform3D(0.707107, -0.353554, 0.612372, -4.37114e-08, 0.866025, 0.5, -0.707107, -0.353554, 0.612372, 1, 1, 1)
+keep_aspect = 0
+projection = 1
+size = 2.0
+metadata/_edit_lock_ = true
+
+[node name="transition_arrow" parent="." instance=ExtResource("7_jq8m5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.18, 0.225)
+script = ExtResource("7_d6m2i")
+
+[node name="Area3D2" type="Area3D" parent="transition_arrow"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="transition_arrow/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1625, -0.05, -0.05)
+shape = SubResource("BoxShape3D_vxpn7")
+
+[node name="up_transition_arrow" parent="." instance=ExtResource("7_5wftq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, -0.9)
+
+[node name="tile_" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.45)
+
+[node name="tile_2" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, 0.45)
+
+[node name="tile_7" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.675)
+
+[node name="tile_8" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, 0.675)
+
+[node name="tile_9" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.675)
+
+[node name="tile_10" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, 0.675)
+
+[node name="tile_11" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(3.5678e-08, -0.577744, 0.816218, -2.5254e-08, -0.816218, -0.577744, 1, 0, -4.37114e-08, -0.619024, 0.187565, 0.225)
+
+[node name="tile_13" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(3.5678e-08, -0.577744, 0.816218, -2.5254e-08, -0.816218, -0.577744, 1, 0, -4.37114e-08, -0.799319, 0.315899, 0.225)
+
+[node name="tile_12" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(3.5678e-08, -0.577744, 0.816218, -2.5254e-08, -0.816218, -0.577744, 1, 0, -4.37114e-08, -0.444527, 0.0673942, 0.225)
+
+[node name="tile_3" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, 0.225)
+
+[node name="tile_4" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, 0)
+
+[node name="tile_5" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, -0.225)
+
+[node name="tile_6" parent="." instance=ExtResource("8_5wftq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.225, 0, -0.45)
+
+[node name="left_transition_arrow" parent="." instance=ExtResource("9_6xmj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 0.225, 0.225)
+
+[node name="invisible_bound" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0, -0.45)
+
+[node name="invisible_bound7" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 0, -0.675)
+
+[node name="invisible_bound8" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -0.9)
+
+[node name="invisible_bound9" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0, -1.125)
+
+[node name="invisible_bound10" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, -1.125)
+
+[node name="invisible_bound11" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0, -1.35)
+
+[node name="invisible_bound12" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-07, 0, -1.35)
+
+[node name="invisible_bound13" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 0, -1.35)
+
+[node name="invisible_bound2" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0, -0.225)
+
+[node name="invisible_bound3" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 2.98023e-08)
+
+[node name="invisible_bound4" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 0.225)
+
+[node name="invisible_bound5" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 0.45)
+
+[node name="invisible_bound6" parent="." instance=ExtResource("11_vxpn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0, 0.675)
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.675, 0.225)
+billboard = 1
+texture_filter = 0
+render_priority = 2
+texture = ExtResource("13_tn4qm")
+
+[connection signal="body_entered" from="transition_arrow/Area3D2" to="transition_arrow" method="_on_area_3d_2_body_entered"]

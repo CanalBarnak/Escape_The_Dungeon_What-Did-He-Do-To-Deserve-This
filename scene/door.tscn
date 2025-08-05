@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4mlti11cn64e"]
+
+[ext_resource type="Texture2D" uid="uid://phkqenvyigop" path="res://Sprites/Wip_door.png" id="1_y5pye"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3f48"]
+size = Vector3(0.2, 0.1, 0.2)
+
+[node name="door" type="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0.36, 0)
+offset = Vector2(7, -7)
+modulate = Color(1, 0.321569, 0.215686, 1)
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_y5pye")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_n3f48")

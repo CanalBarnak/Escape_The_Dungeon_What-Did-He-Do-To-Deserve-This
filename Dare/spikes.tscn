@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=4 uid="uid://cgh1yoa06gf85"]
+
+[ext_resource type="Script" uid="uid://c75jt36p8hxyv" path="res://Dare/spikes.gd" id="1_nrdsm"]
+[ext_resource type="Texture2D" uid="uid://dvlleix1dltjr" path="res://Dare/models/spike/spike_0.png" id="1_s0g1x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dttmm"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.513051, 0.211541, 0.353917, 1)
+albedo_texture = ExtResource("1_s0g1x")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_74bha"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, 0, 1, 1, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAACAAMA"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAPwAAAL8AAAAAAAAAPwAAAD8AAAAAAAAAvwAAAD8AAAAAAAAAvwAAAL8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tkbkm"]
+resource_name = "blockbench_export_mesh"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, 0, 1, 1, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAD8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAD8AAAA/AAAAAAAAAD8AAAA/"),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUA"),
+"material": SubResource("StandardMaterial3D_dttmm"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAAAPwAAAL8AAAAAAAAAPwAAAD8AAAAAAAAAvwAAAD8AAAAAAAAAPwAAAL8AAAAAAAAAvwAAAD8AAAAAAAAAvwAAAL8AAAAA/////wAA/7//////AAD/v/////8AAP+//////wAA/7//////AAD/v/////8AAP+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_74bha")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fhau"]
+size = Vector3(2.04407, 0.666077, 1)
+
+[node name="spikes" type="Node3D"]
+script = ExtResource("1_nrdsm")
+
+[node name="Object" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("ArrayMesh_tkbkm")
+skeleton = NodePath("")
+
+[node name="Object2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
+mesh = SubResource("ArrayMesh_tkbkm")
+skeleton = NodePath("")
+
+[node name="Object3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)
+mesh = SubResource("ArrayMesh_tkbkm")
+skeleton = NodePath("")
+
+[node name="Object4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+mesh = SubResource("ArrayMesh_tkbkm")
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280701, 0.333038, 0)
+shape = SubResource("BoxShape3D_8fhau")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

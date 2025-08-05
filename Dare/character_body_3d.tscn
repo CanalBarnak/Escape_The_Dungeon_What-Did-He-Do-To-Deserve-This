@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=4 uid="uid://c4u8s5r31jlr1"]
+
+[ext_resource type="Script" uid="uid://c1f0uhkaehmch" path="res://Dare/character_body_3d.gd" id="1_iwpo4"]
+[ext_resource type="Texture2D" uid="uid://bb7a8gwuuv35n" path="res://Dare/models/shadax/Shadax_0.png" id="2_fb3t6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2r7xe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aiyqr"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_fb3t6")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tbmpx"]
+_surfaces = [{
+"aabb": AABB(-1, 0, 0, 2, 3, 1e-05),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("CgACAAMACgADAAUAAAACAAoAAAABAAIABAAAAAoACwAKAAUABAAKAAsABgAEAAsACwAFAAgABgALAAcABwALAAgABwAIAAkA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAACAAMABAAAAAMABAADAAUABgAEAAUABgAFAAcABwAFAAgABwAIAAkA")],
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AACAvwAAAEAAAAAAAACAvwAAQEAAAAAAAAAAAAAAQEAAAAAAAACAPwAAQEAAAAAAAACAvwAAgD8AAAAAAACAPwAAAEAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAgD8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ls31j"]
+resource_name = "blockbench_export_mesh"
+_surfaces = [{
+"aabb": AABB(-1, 0, 0, 2, 3, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAgD0AAAAAAAAAAAAAgD0AAAAAAAAAPgAAAAAAAAAAAAAAPgAAAD4AAIA9AAAAAAAAQD4AAIA9AABAPgAAAD4AAAA+AAAAPgAAQD4AAIA9AACAPQAAgD0AAIA9AAAAPgAAAAAAAIA9AAAAAAAAAAAAAIA9AACAPQAAAAAAAIA9AACAPQAAgD0AAAA+AACAPQAAgD0AAAA+AACAPQAAgD0AAAA+AAAAPgAAgD0AAAAAAACAPQAAgD0AAIA9AAAAAAAAAD4AAIA9AACAPQAAgD0AAAA+AACAPQAAAD4AAAA+AAAAPgAAgD0AAEA+AAAAPgAAAD4AAAAAAAAAPgAAgD0AAAA+AAAAAAAAQD4AAIA9AAAAPgAAgD0AAEA+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("CgACAAMACwAMAAUAAAABAA0ADgAPABAAEQASABMAFAAVAAgABAAWABcAGAAZABoABwAbABwAHQAeAAkABgAfACAAIQAiACMA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAACAAMABAAAAAMABAADAAUABgAEAAUABgAFAAcABwAFAAgABwAIAAkA")],
+"material": SubResource("StandardMaterial3D_aiyqr"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AACAvwAAAEAAAAAAAACAvwAAQEAAAAAAAAAAAAAAQEAAAAAAAACAPwAAQEAAAAAAAACAvwAAgD8AAAAAAACAPwAAAEAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAACAPwAAQEAAAAAAAAAAAAAAQEAAAAAAAACAvwAAAEAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAEAAAAAAAACAPwAAAEAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAEAAAAAAAACAvwAAAEAAAAAAAAAAAAAAAEAAAAAAAACAvwAAgD8AAAAAAAAAAAAAAEAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAvwAAgD8AAAAAAAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAA/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tbmpx")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_iwpo4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_2r7xe")
+
+[node name="Shadax" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ls31j")
+skeleton = NodePath("")

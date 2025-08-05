@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://c66b1u7ddhgpx"]
+
+[ext_resource type="Script" uid="uid://cx3867ssmft73" path="res://score.gd" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://coxt7l0diprtq" path="res://label_2.gd" id="2_m6e0p"]
+[ext_resource type="Script" uid="uid://7exqyjushlqs" path="res://label_3.gd" id="3_27fn8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "sccore"
+script = ExtResource("1_fyqef")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 646.0
+offset_right = 726.0
+offset_bottom = 59.0
+grow_horizontal = 0
+text = "test"
+script = ExtResource("2_m6e0p")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 549.0
+offset_right = 40.0
+offset_bottom = 608.0
+grow_vertical = 0
+script = ExtResource("3_27fn8")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Label3" method="_on_timer_timeout"]

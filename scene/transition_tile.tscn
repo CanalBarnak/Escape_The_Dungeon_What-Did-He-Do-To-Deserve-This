@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr6kldboovnh8"]
+
+[ext_resource type="Texture2D" uid="uid://bamit046sgqyn" path="res://Sprites/lower_floor_transition.png" id="1_06ms7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3f48"]
+size = Vector3(0.2, 0.1, 0.2)
+
+[node name="Sprite3D" type="Sprite3D"]
+modulate = Color(1, 0.321569, 0.215686, 1)
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_06ms7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_n3f48")

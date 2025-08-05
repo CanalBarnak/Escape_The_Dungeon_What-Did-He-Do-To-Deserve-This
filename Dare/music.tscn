@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://urqf0uaf15s"]
+
+[ext_resource type="AudioStream" uid="uid://bulxgt2htb2b" path="res://music/glooming-Banjo.mp3" id="1_3h6ak"]
+[ext_resource type="Script" uid="uid://brbuhj05i372e" path="res://music.gd" id="2_5vxup"]
+
+[node name="Glooming-banjo" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_3h6ak")
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_5vxup")

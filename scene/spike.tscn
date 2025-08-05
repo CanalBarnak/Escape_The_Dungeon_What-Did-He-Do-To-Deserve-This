@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://yj6g3h2ligiw"]
+
+[ext_resource type="Script" uid="uid://bigk2grcgt1yl" path="res://scripts/spikes.gd" id="1_vi0yg"]
+[ext_resource type="Texture2D" uid="uid://cb5nttiqxqh06" path="res://Sprites/spike.png" id="1_xanym"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3f48"]
+size = Vector3(0.225, 0.09, 0.225)
+
+[node name="Spike_" type="Node3D"]
+script = ExtResource("1_vi0yg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+modulate = Color(0.626269, 0.477765, 0.993414, 1)
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_xanym")
+
+[node name="StaticBody3D" type="Area3D" parent="Sprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_n3f48")
+
+[connection signal="body_entered" from="Sprite3D/StaticBody3D" to="." method="_on_static_body_3d_body_entered"]

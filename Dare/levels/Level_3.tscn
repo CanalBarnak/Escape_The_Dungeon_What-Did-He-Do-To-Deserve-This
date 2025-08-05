@@ -1,0 +1,1857 @@
+[gd_scene load_steps=17 format=3 uid="uid://1v28e2de02j7"]
+
+[ext_resource type="PackedScene" uid="uid://c4u8s5r31jlr1" path="res://Dare/character_body_3d.tscn" id="1_diqa7"]
+[ext_resource type="PackedScene" uid="uid://cl4ekka0w3ds0" path="res://Dare/block.tscn" id="2_udcvd"]
+[ext_resource type="PackedScene" uid="uid://odw2nm3f3mjy" path="res://Dare/moving_block.tscn" id="3_ha448"]
+[ext_resource type="PackedScene" uid="uid://cgh1yoa06gf85" path="res://Dare/spikes.tscn" id="4_6tedy"]
+[ext_resource type="PackedScene" uid="uid://b3a1rng4f4wf2" path="res://Dare/wall.tscn" id="5_ax6up"]
+[ext_resource type="PackedScene" uid="uid://drks1w01b44n6" path="res://Dare/shortwall.tscn" id="6_q68j4"]
+[ext_resource type="PackedScene" uid="uid://bukxahgy2mr4k" path="res://Dare/pillar.tscn" id="7_405jl"]
+[ext_resource type="PackedScene" uid="uid://cijshadgh3ub8" path="res://Dare/blackout.tscn" id="8_anm0f"]
+[ext_resource type="PackedScene" uid="uid://bh4cp84850sre" path="res://Dare/crystal.tscn" id="9_snabu"]
+[ext_resource type="PackedScene" uid="uid://c66b1u7ddhgpx" path="res://Dare/ui.tscn" id="10_87qso"]
+[ext_resource type="Script" uid="uid://bm5gspkhmfam4" path="res://Dare/levels/To_lvl4.gd" id="11_diqa7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2r7xe"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_b8ntn"]
+sky_material = SubResource("ProceduralSkyMaterial_2r7xe")
+
+[sub_resource type="Environment" id="Environment_8yyiu"]
+background_mode = 2
+sky = SubResource("Sky_b8ntn")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udcvd"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ha448"]
+size = Vector3(1, 2.75, 3)
+
+[node name="world" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8yyiu")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_diqa7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 2)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Cam_pivot" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612372, 4.5, -1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D/Cam_pivot"]
+transform = Transform3D(0.237952, -0.666644, 0.706374, 0.803905, 0.543321, 0.241954, -0.545086, 0.510283, 0.665203, -5.3033, 2.65165, 11.4072)
+light_energy = 0.5
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="CharacterBody3D/Cam_pivot"]
+transform = Transform3D(0.982964, -0.149976, -0.106261, 0.141458, 0.986404, -0.0836559, 0.117361, 0.0671993, 0.990814, 6.09382, 10.2462, 3.81259)
+light_energy = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Cam_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.9407e-08, 0, -8.9407e-08, 1, 0, -4.76837e-07, 16)
+
+[node name="block pile" type="Node3D" parent="."]
+
+[node name="block22" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
+[node name="block41" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="block42" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="block24" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
+
+[node name="block38" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -10)
+
+[node name="block26" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 2)
+
+[node name="block39" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 2)
+
+[node name="block40" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 2)
+
+[node name="block13" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="block23" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="block31" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="block32" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="block25" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="block43" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="block35" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="block27" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="block28" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+
+[node name="block29" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
+
+[node name="block15" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+
+[node name="block16" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+
+[node name="block17" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="block18" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 2)
+
+[node name="block19" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
+
+[node name="block20" parent="block pile" instance=ExtResource("2_udcvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 2)
+
+[node name="moving block" parent="." instance=ExtResource("3_ha448")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="moving block2" parent="." instance=ExtResource("3_ha448")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 7.9)
+
+[node name="spike_pile" type="Node3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, -1, 0)
+metadata/_edit_lock_ = true
+
+[node name="spikes973" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes974" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes975" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes976" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes977" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes978" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes979" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes980" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes981" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes982" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes983" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes984" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes985" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes986" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes987" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes988" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes989" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes990" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes991" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes992" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes993" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes994" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 9.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes995" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes996" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes997" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes998" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes999" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1000" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1001" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1002" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes1003" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1004" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1005" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1006" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1007" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1008" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1009" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1010" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1011" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1012" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1013" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1014" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1015" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1016" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1017" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1018" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1019" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1020" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1021" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1022" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, -0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes1023" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1024" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1025" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1026" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1027" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1028" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1029" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1030" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 1.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1031" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1032" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1033" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1034" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1035" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1036" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1037" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1038" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes1039" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes1040" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1041" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1042" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1043" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1044" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1045" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1046" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1047" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1048" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1049" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1050" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1051" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1052" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1053" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1054" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1055" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1056" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1057" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1058" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1059" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1060" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1061" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1062" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1063" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1064" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499997, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1065" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1066" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 1.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1067" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1068" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1069" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1070" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499998, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1071" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1072" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1073" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1074" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1075" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1076" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1077" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1078" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1079" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1080" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1081" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1082" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1083" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1084" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1085" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1086" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1087" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1088" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1089" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1090" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1091" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1092" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1093" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1094" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1095" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1096" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1097" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1098" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1099" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1100" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1101" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1102" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 9.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1103" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1104" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1105" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1106" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1107" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1108" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1109" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1110" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1111" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1112" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1113" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1114" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1115" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1116" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1117" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1118" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1119" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1120" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1121" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1122" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1123" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1124" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1125" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1126" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1127" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1128" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1129" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1130" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1131" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1132" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1133" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1134" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1135" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1136" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1137" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1138" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, -6.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1139" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1140" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1141" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1142" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1143" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1144" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1145" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1146" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1147" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1148" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1149" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1150" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1151" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1152" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -13.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1153" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1154" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1155" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1156" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1157" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1158" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1159" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1160" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1161" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1162" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes1163" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1164" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0.500001)
+metadata/_edit_lock_ = true
+
+[node name="spikes1165" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes1166" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -0.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1167" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -0.499999)
+metadata/_edit_lock_ = true
+
+[node name="spikes1168" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1169" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1170" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1171" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1172" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1173" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1174" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, -6.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1175" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1176" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1177" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1178" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1179" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1180" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1181" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1182" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 0.499997)
+metadata/_edit_lock_ = true
+
+[node name="spikes1183" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -0.500004)
+metadata/_edit_lock_ = true
+
+[node name="spikes1184" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -1.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1185" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1186" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -3.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1187" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1188" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1189" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1190" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1191" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1192" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1193" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1194" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1195" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1196" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1197" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1198" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1199" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1200" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1201" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1202" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1203" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1204" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1205" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1206" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1207" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1208" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1209" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1210" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, -6.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1211" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1212" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1213" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1214" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1215" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1216" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1217" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1218" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1219" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1220" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1221" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1222" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1223" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1224" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1225" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1226" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500001, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1227" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1228" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1229" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500001, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1230" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1231" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1232" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1233" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1234" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1235" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500001, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1236" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1237" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1238" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1239" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1240" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1241" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1242" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1243" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1244" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499999, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1245" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1246" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 1.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1247" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1248" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1249" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1250" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1251" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1252" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1253" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1254" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1255" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1256" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1257" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1258" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1259" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1260" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1261" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1262" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1263" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1264" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1265" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1266" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1267" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1268" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1269" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1270" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1271" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1272" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1273" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1274" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1275" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1276" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1277" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1278" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1279" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1280" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1281" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1282" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, -5.56363e-08, 0, 1, 0, 5.56363e-08, 0, 1, 9.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1283" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1284" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1285" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1286" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1287" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1288" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 11.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1289" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 10.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1290" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 9.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1291" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 8.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1297" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 7.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1293" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 6.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1294" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 5.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1295" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="spikes1296" parent="spike_pile" instance=ExtResource("4_6tedy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 4.5)
+metadata/_edit_lock_ = true
+
+[node name="wall" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall36" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall12" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall35" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(0.721255, 0, 0, 0, 1, 0, 0, 0, 1, 4.2252, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall13" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall14" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, -7)
+
+[node name="wall38" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.25, -7)
+
+[node name="wall66" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.25, -7)
+
+[node name="wall67" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.25, -7)
+
+[node name="wall68" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.25, -7)
+
+[node name="wall15" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall16" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall17" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall18" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall2" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall3" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall4" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.25, -7)
+metadata/_edit_lock_ = true
+
+[node name="wall5" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -6)
+metadata/_edit_lock_ = true
+
+[node name="wall6" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -5)
+metadata/_edit_lock_ = true
+
+[node name="wall7" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -4)
+metadata/_edit_lock_ = true
+
+[node name="wall19" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 5)
+metadata/_edit_lock_ = true
+
+[node name="wall20" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 6)
+metadata/_edit_lock_ = true
+
+[node name="wall21" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 7)
+metadata/_edit_lock_ = true
+
+[node name="wall22" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 8)
+metadata/_edit_lock_ = true
+
+[node name="wall23" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 9)
+metadata/_edit_lock_ = true
+
+[node name="wall24" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall8" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -3)
+metadata/_edit_lock_ = true
+
+[node name="wall9" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -2)
+
+[node name="wall10" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, -1)
+metadata/_edit_lock_ = true
+
+[node name="wall11" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.25, 0)
+metadata/_edit_lock_ = true
+
+[node name="wall37" parent="." instance=ExtResource("5_ax6up")]
+transform = Transform3D(-2.93011e-08, 0, 1, 0, 1, 0, -0.670332, 0, -4.37114e-08, -5.00619, 0.250001, 0.617842)
+metadata/_edit_lock_ = true
+
+[node name="wall25" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.25, 5)
+metadata/_edit_lock_ = true
+
+[node name="wall26" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.25, 6)
+metadata/_edit_lock_ = true
+
+[node name="wall27" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.25, 7)
+metadata/_edit_lock_ = true
+
+[node name="wall28" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.25, 8)
+metadata/_edit_lock_ = true
+
+[node name="wall29" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.25, 9)
+metadata/_edit_lock_ = true
+
+[node name="wall30" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall31" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall32" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall33" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall34" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall39" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall40" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall41" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall42" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall43" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall44" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 5)
+metadata/_edit_lock_ = true
+
+[node name="wall45" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 6)
+metadata/_edit_lock_ = true
+
+[node name="wall46" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 7)
+metadata/_edit_lock_ = true
+
+[node name="wall47" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 8)
+metadata/_edit_lock_ = true
+
+[node name="wall48" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 9)
+metadata/_edit_lock_ = true
+
+[node name="wall51" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -4)
+metadata/_edit_lock_ = true
+
+[node name="wall55" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -5)
+metadata/_edit_lock_ = true
+
+[node name="wall56" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -6)
+metadata/_edit_lock_ = true
+
+[node name="wall52" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -3)
+metadata/_edit_lock_ = true
+
+[node name="wall53" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -2)
+metadata/_edit_lock_ = true
+
+[node name="wall54" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, -1)
+
+[node name="wall57" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 4)
+
+[node name="wall58" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 3)
+
+[node name="wall59" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 2)
+
+[node name="wall60" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 1)
+
+[node name="wall62" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 4, 0.25, 10)
+
+[node name="wall63" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 3, 0.25, 10)
+
+[node name="wall64" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 2, 0.25, 10)
+
+[node name="wall65" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 1, 0.25, 10)
+
+[node name="wall61" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0.25, 0)
+
+[node name="wall49" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="wall50" parent="." instance=ExtResource("6_q68j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.25, 10)
+metadata/_edit_lock_ = true
+
+[node name="pillar" parent="." instance=ExtResource("7_405jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+metadata/_edit_lock_ = true
+
+[node name="pillar2" parent="." instance=ExtResource("7_405jl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0, -7)
+metadata/_edit_lock_ = true
+
+[node name="blackout3" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+metadata/_edit_lock_ = true
+
+[node name="blackout4" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 15)
+metadata/_edit_lock_ = true
+
+[node name="blackout5" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 15)
+metadata/_edit_lock_ = true
+
+[node name="blackout6" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
+metadata/_edit_lock_ = true
+
+[node name="blackout7" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
+metadata/_edit_lock_ = true
+
+[node name="blackout8" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -35, 3.7, -29)
+metadata/_edit_lock_ = true
+
+[node name="blackout10" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 25, 3.7, -37)
+metadata/_edit_lock_ = true
+
+[node name="blackout11" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 42, 3.7, 23)
+metadata/_edit_lock_ = true
+
+[node name="blackout12" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -18, 3.7, 40)
+metadata/_edit_lock_ = true
+
+[node name="blackout13" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 0.9504, -35, 3.7, 5.75)
+metadata/_edit_lock_ = true
+
+[node name="blackout9" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(-4.37114e-08, 1, -1.83588e-08, 0, -4.37114e-08, -0.42, -1, -4.37114e-08, -6.89652e-16, -6, 1.6, 0)
+metadata/_edit_lock_ = true
+
+[node name="blackout14" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.42, 0, 1, -1.83588e-08, 2, 1.6, -8)
+metadata/_edit_lock_ = true
+
+[node name="blackout15" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(-4.37114e-08, -1, 1.83588e-08, 0, -4.37114e-08, -0.42, 1, -4.37114e-08, -6.89652e-16, 12, 1.6, -2)
+metadata/_edit_lock_ = true
+
+[node name="blackout16" parent="." instance=ExtResource("8_anm0f")]
+transform = Transform3D(-4.37114e-08, -1, 1.83588e-08, 0, -4.37114e-08, -0.42, 1, -4.37114e-08, -6.89652e-16, 12, 1.6, 7)
+metadata/_edit_lock_ = true
+
+[node name="Crystal" parent="." instance=ExtResource("9_snabu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2)
+
+[node name="Crystal2" parent="." instance=ExtResource("9_snabu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 8)
+
+[node name="Control" parent="." instance=ExtResource("10_87qso")]
+
+[node name="portal pivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 0, 5)
+
+[node name="portal3" type="Node3D" parent="portal pivot"]
+transform = Transform3D(-1.3, 0, 2.01724e-07, 0, 1.67834, 0, -1.96295e-07, 0, -1.33596, 11.9878, 0, 2.26376)
+script = ExtResource("11_diqa7")
+
+[node name="block" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 1.75)
+
+[node name="block2" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 1.75)
+
+[node name="block3" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 1.75)
+
+[node name="block4" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.75, 1.75)
+
+[node name="block5" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 1.75)
+
+[node name="block6" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25, 1.75)
+
+[node name="block7" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, 1.5)
+
+[node name="block8" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.75, 1.25)
+
+[node name="block9" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 1)
+
+[node name="block10" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -1.75)
+
+[node name="block11" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, -1.75)
+
+[node name="block12" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -1.75)
+
+[node name="block13" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.75, -1.75)
+
+[node name="block14" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, -1.75)
+
+[node name="block15" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25, -1.5)
+
+[node name="block16" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, -1.25)
+
+[node name="block17" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.75, -1)
+
+[node name="block18" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, -0.75)
+
+[node name="block19" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.25, -0.375)
+
+[node name="block20" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.25, 0.625)
+
+[node name="block21" parent="portal pivot/portal3" instance=ExtResource("2_udcvd")]
+transform = Transform3D(0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.5, 0.125)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="portal pivot/portal3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.25, 0.125)
+radius = 0.25
+material = SubResource("StandardMaterial3D_udcvd")
+
+[node name="Area3D" type="Area3D" parent="portal pivot/portal3"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="portal pivot/portal3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.875, 0)
+shape = SubResource("BoxShape3D_ha448")
+
+[node name="Spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.81, 0.54, 2.16)
+
+[connection signal="body_entered" from="portal pivot/portal3/Area3D" to="portal pivot/portal3" method="_on_area_3d_body_entered"]
